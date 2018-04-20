@@ -23,7 +23,7 @@ class RegisterInterface(object):
 		prober = UIOProber()
 		try:
 			device = prober.devices[device_name]
-			memory_file = os.open("/dev/" + device_name, os.O_RDWR | os.O_SYNC)
+			memory_file = os.open("/dev/" + device.uio_num, os.O_RDWR | os.O_SYNC)
 			self.reg_mem = mmap.mmap(memory_file, device.map_length, prot=mmap.PROT_READ | mmap.PROT_WRITE)
 		except KeyError as e:
 			# Give a more helpful error message
