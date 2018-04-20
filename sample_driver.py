@@ -1,4 +1,4 @@
-from axi_python_utilities.axi_utilities import RegisterInterface
+from axi_python_utilities.register_interface import RegisterInterface
 
 class SampleAXIInterface(RegisterInterface):
 
