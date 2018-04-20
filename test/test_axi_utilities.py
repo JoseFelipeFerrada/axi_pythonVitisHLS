@@ -8,7 +8,8 @@ import os
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + "/../axi_python_utilities")
 
 import unittest
-from axi_utilities import RegisterInterface, UIOProber, UIODevice
+from register_interface import RegisterInterface
+from uio_utilities import  UIOProber, UIODevice
 
 # CHANGE THIS based on hardware
 NUM_UIO_DEVICES = 6
