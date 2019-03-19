@@ -17,14 +17,14 @@ Utility class to interface with AXI4 lite peripherals and perform operations on 
 '''
 class RegisterInterface(object):
 
-    def __init__(self, device_name, axi_bus_width=4):
+    def __init__(self, device_name, uio_index = 0, axi_bus_width=4):
         # This struct contains all the fields we want to address
         self.fields_dict = {}
         self.bus_width = axi_bus_width
         # This class will scan all the UIO devices
         prober = UIOProber()
         try:
-            device = prober.devices[device_name]
+            device = prober.devices[device_name][uio_index]
             memory_file = os.open("/dev/" + device.uio_num, os.O_RDWR | os.O_SYNC)
             self.reg_mem = mmap.mmap(memory_file, device.map_length, prot=mmap.PROT_READ | mmap.PROT_WRITE)
         except KeyError as e:

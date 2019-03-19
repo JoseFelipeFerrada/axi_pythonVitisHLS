@@ -27,7 +27,13 @@ class UIOProber(object):
         uio_dict = {}
         # Now we need to fill a dict of UIO devices by going through the dir and getting all relevant information
         for uio_number in uio_number_list:
-            uio_dict.update(self.GetUIOInfo(uio_number))
+            dict_entry = self.GetUIOInfo(uio_number)
+            key = dict_entry.keys()[0]
+            if key in uio_dict:
+                # Entry already present
+                uio_dict[key].append(dict_entry[key])
+            else:
+                uio_dict[key] = [dict_entry[key]]
         return uio_dict
 
     def GetUIOInfo(self, uio_number):
