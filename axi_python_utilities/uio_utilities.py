@@ -11,6 +11,8 @@ class UIODevice(object):
     def __eq__(self, other):
         return (self.uio_num == other.uio_num and self.base_address == other.base_address and
         self.map_length == other.map_length)
+    def __str__(self):
+        return 'UIODevice: ' + hex(self.uio_num) + ' at ' + hex(self.base_address) + ' with mmap ' + str(self.map_length)
 
 
 class UIOProber(object):
@@ -28,7 +30,8 @@ class UIOProber(object):
         # Now we need to fill a dict of UIO devices by going through the dir and getting all relevant information
         for uio_number in uio_number_list:
             dict_entry = self.GetUIOInfo(uio_number)
-            key = dict_entry.keys()[0]
+            print(dict_entry)
+            key = list(dict_entry.keys())[0]
             if key in uio_dict:
                 # Entry already present
                 uio_dict[key].append(dict_entry[key])
